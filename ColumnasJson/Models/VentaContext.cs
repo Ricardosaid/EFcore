@@ -9,4 +9,16 @@ public class VentaContext : DbContext
     {
         optionsBuilder.UseSqlServer("Server=localhost,1433;Database=ColumnasJson;User Id=sa;Password=SMARTpay123#;TrustServerCertificate=true");
     }
+
+    public DbSet<Venta> Ventas { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Venta>().OwnsOne(
+            sale => sale.customer, customer =>
+            {
+                customer.ToJson();
+                customer.OwnsOne(c => c.address);
+            });
+    }
 }

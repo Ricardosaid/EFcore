@@ -23,12 +23,12 @@ public class DataCustomer
 
 public class Address
 {
-    private string _calle;
-    private string _ciudad;
+    private string calle { get; set; }
+    private string ciudad { get; set; }
     public Address(string street, string city)
     {
-        _calle = street;
-        _ciudad = city;
+        calle = street;
+        ciudad = city;
     }
     
 }
